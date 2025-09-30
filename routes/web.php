@@ -1,17 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FakultasController;
 
-// route default untuk halaman utama
 Route::get('/', function () {
-    return 'Halo Laravel!';
+    return view('welcome');
 });
 
-// route untuk tabel fakultas (HTML)
-Route::get('/fakultas', [FakultasController::class, 'index']);
+Route::get('/hello', function () {
+    return 'hello, nama';
+});
+ 
+Route::get('/user/{name}', function ($name) {
+    return "Nama Saya $name";
+});
 
-// route untuk API JSON
-Route::get('/api/fakultas', [FakultasController::class, 'api']);
+Route::get('/greet/{name?}', function ($name = 'Guest') {
+    return "Halo, $name";
+});
 
+Route::get('/profile', function () {
+    return view('profile');
+});
 
+Route::get('/about', function () {
+    return view ('about', ['name' => 'Olivia']);
+});
+
+Route::get('/home', function () {
+    return "Halo, Ini adalah halaman Home";
+})->name('home.page');
